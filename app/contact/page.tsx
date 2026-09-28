@@ -1,0 +1,10 @@
+import type { Metadata } from "next";
+import { ArrowUpLeft, MapPin, Navigation, Route } from "lucide-react";
+import { Breadcrumbs } from "@/components/shell";
+import { site } from "@/lib/site";
+export const metadata: Metadata = { title: "الموقع والتواصل في حي الفلاح الرياض", description: "عنوان عبدالحكيم للكهرباء والإنارة الحديثة: 2870 شارع الخطابة، 6217، حي الفلاح، الرياض 13314. افتح الاتجاهات مباشرة.", alternates: { canonical: "/contact" } };
+
+export default function Contact() {
+  return <main id="main"><section className="page-hero simple-hero"><div className="container"><Breadcrumbs items={[{ label: "الموقع والتواصل" }]} /><span className="eyebrow eyebrow-light">الوصول إلى النشاط</span><h1>العنوان واضح، <span>والطريق أقرب.</span></h1><p>افتح النقطة المحددة مباشرة على خرائط Google قبل الانطلاق إلى حي الفلاح.</p></div></section>
+  <section className="section contact-section"><div className="container contact-grid"><div><span className="eyebrow">عبدالحكيم للكهرباء والإنارة الحديثة</span><h2>نلتقي في <span>حي الفلاح.</span></h2><div className="contact-line"><span><MapPin size={24} /></span><div><h3>العنوان</h3><p>{site.address}</p></div></div><div className="contact-line"><span><Route size={24} /></span><div><h3>الاتجاهات</h3><p>رابط مباشر للنقطة التي حددها صاحب النشاط. تحقق من موقع الوصول قبل زيارتك.</p></div></div><a className="button button-dark" href={site.maps} target="_blank" rel="noopener noreferrer"><Navigation size={19} /> افتح خرائط Google <ArrowUpLeft size={18} /></a></div><div className="contact-visual"><div className="contact-map" aria-hidden="true"><span className="route-line route-one" /><span className="route-line route-two" /><span className="route-line route-three" /><span className="route-line route-four" /><span className="big-pin"><MapPin size={43} fill="currentColor" /></span></div><div className="contact-map-caption"><small>موقع النشاط</small><strong>شارع الخطابة، حي الفلاح</strong><span>الرياض 13314</span></div></div></div></section></main>;
+}
