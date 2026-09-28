@@ -1,8 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Header, Footer, FloatingMap } from "@/components/shell";
+import localFont from "next/font/local";
+import { Header } from "@/components/header";
+import { Footer, FloatingMap } from "@/components/shell";
 import { graph, site, siteUrl } from "@/lib/site";
 import "./globals.css";
+
+const arabicFont = localFont({ src: "../node_modules/@fontsource-variable/noto-sans-arabic/files/noto-sans-arabic-arabic-wght-normal.woff2", display: "swap", variable: "--font-arabic", weight: "100 900" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -17,5 +21,5 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#101c27" };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return <html lang="ar" dir="rtl"><body><a className="skip-link" href="#main">انتقل إلى المحتوى</a><Header />{children}<Footer /><FloatingMap /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, "\\u003c") }} /></body></html>;
+  return <html lang="ar" dir="rtl" className={arabicFont.variable}><body><a className="skip-link" href="#main">انتقل إلى المحتوى</a><Header />{children}<Footer /><FloatingMap /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, "\\u003c") }} /></body></html>;
 }

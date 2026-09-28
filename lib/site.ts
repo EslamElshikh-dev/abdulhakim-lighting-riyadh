@@ -1,8 +1,11 @@
 export const site = {
   name: "عبدالحكيم للكهرباء والإنارة الحديثة",
   shortName: "عبدالحكيم",
-  address: "2870 شارع الخطابة، 6217، حي الفلاح، الرياض 13314، المملكة العربية السعودية",
-  addressShort: "شارع الخطابة، حي الفلاح، الرياض",
+  address: "2870 شارع الخطابة، 6217، الفلاح، الرياض 13314",
+  addressShort: "شارع الخطابة، الفلاح، الرياض",
+  streetAddress: "2870 شارع الخطابة، 6217، الفلاح",
+  city: "الرياض",
+  postalCode: "13314",
   maps: "https://maps.app.goo.gl/zAAQSDnWa8PbWfQQ9?g_st=ac",
   // يُضاف الرقم فقط بعد التحقق منه من صاحب النشاط أو ملفه التجاري.
   phone: null as string | null,
@@ -23,13 +26,12 @@ export const graph = {
       hasMap: site.maps,
       address: {
         "@type": "PostalAddress",
-        streetAddress: "2870 شارع الخطابة، 6217، حي الفلاح",
-        addressLocality: "الرياض",
-        addressRegion: "الرياض",
-        postalCode: "13314",
+        streetAddress: site.streetAddress,
+        addressLocality: site.city,
+        addressRegion: site.city,
+        postalCode: site.postalCode,
         addressCountry: "SA"
-      },
-      areaServed: { "@type": "City", name: "الرياض" }
+      }
     },
     {
       "@type": "WebSite",
