@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: { default: "عبدالحكيم للكهرباء والإنارة الحديثة | حي الفلاح الرياض", template: "%s | عبدالحكيم للكهرباء والإنارة" },
   description: "عبدالحكيم للكهرباء والإنارة الحديثة في شارع الخطابة، حي الفلاح، الرياض. تعرف على مجالات الإنارة والكهرباء وافتح اتجاهات الموقع.",
   applicationName: site.name,
+  verification: { google: "RhoDv6mIF2DsPd84eCLRiv9HGlPI-viiXPcJIJGafDM" },
   alternates: { canonical: "/" },
   openGraph: { type: "website", locale: "ar_SA", siteName: site.name, title: "عبدالحكيم للكهرباء والإنارة الحديثة | الرياض", description: "الإنارة والكهرباء في حي الفلاح بالرياض. الموقع والمجالات في مكان واحد." },
   robots: { index: true, follow: true }
