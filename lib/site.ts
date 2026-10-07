@@ -1,45 +1,70 @@
+// Public details checked against the managed Google Business Profile.
+// Keep the verification address private; never add it to public source.
 export const site = {
   name: "عبدالحكيم للكهرباء والإنارة الحديثة",
   shortName: "عبدالحكيم",
-  address: "2870 شارع الخطابة، 6217، الفلاح، الرياض 13314",
-  addressShort: "شارع الخطابة، الفلاح، الرياض",
-  streetAddress: "2870 شارع الخطابة، 6217، الفلاح",
   city: "الرياض",
-  postalCode: "13314",
-  maps: "https://maps.app.goo.gl/zAAQSDnWa8PbWfQQ9?g_st=ac",
-  // يُضاف الرقم فقط بعد التحقق منه من صاحب النشاط أو ملفه التجاري.
-  phone: null as string | null,
-  whatsapp: null as string | null,
+  region: "منطقة الرياض",
+  serviceArea: "مدينة الرياض",
+  phone: "+966532305309",
+  phoneDisplay: "0532305309",
+  telephoneUrl: "tel:+966532305309",
+  whatsappUrl: "https://wa.me/966532305309",
+  hoursLabel: "متاح على مدار الساعة",
+  description: "عبدالحكيم للكهرباء والإنارة الحديثة: خدمات الكهرباء والإنارة الداخلية والخارجية ومستلزمات الكهرباء في مدينة الرياض. تواصل على 0532305309 لتوضيح احتياجك وتنسيق الخدمة.",
 } as const;
 
-export const siteUrl = (process.env.SITE_URL || "https://abdulhakim-lighting-riyadh.vercel.app").replace(/\/$/, "");
+export const siteUrl = (process.env.SITE_URL || "https://abdulhakim-lighting-riyadh.vercel.app").replace(/\/+$/, "");
+export const businessId = `${siteUrl}/#business`;
+export const websiteId = `${siteUrl}/#website`;
+export const serviceArea = {
+  "@type": "City",
+  name: site.city,
+  containedInPlace: { "@type": "Country", name: "المملكة العربية السعودية" },
+} as const;
+export const openingHours = {
+  "@type": "OpeningHoursSpecification",
+  dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+  opens: "00:00",
+  closes: "23:59",
+};
 
 export const graph = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "LocalBusiness",
-      "@id": `${siteUrl}/#business`,
+      "@type": "Electrician",
+      "@id": businessId,
       name: site.name,
-      description: "عبدالحكيم للكهرباء والإنارة الحديثة في حي الفلاح بالرياض. تعرّف على مجالات الكهرباء والإنارة وموقع النشاط.",
-      url: siteUrl,
-      hasMap: site.maps,
+      description: site.description,
+      url: `${siteUrl}/`,
+      telephone: site.phone,
+      logo: { "@type": "ImageObject", url: `${siteUrl}/icon.svg`, width: 64, height: 64 },
+      // City-level public information for a service-area business.
       address: {
         "@type": "PostalAddress",
-        streetAddress: site.streetAddress,
         addressLocality: site.city,
-        addressRegion: site.city,
-        postalCode: site.postalCode,
-        addressCountry: "SA"
-      }
+        addressRegion: site.region,
+        addressCountry: "SA",
+      },
+      areaServed: serviceArea,
+      openingHoursSpecification: openingHours,
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: site.phone,
+        contactType: "خدمة العملاء",
+        availableLanguage: "Arabic",
+        areaServed: "SA",
+        hoursAvailable: openingHours,
+      },
     },
     {
       "@type": "WebSite",
-      "@id": `${siteUrl}/#website`,
-      url: siteUrl,
+      "@id": websiteId,
+      url: `${siteUrl}/`,
       name: site.name,
       inLanguage: "ar-SA",
-      publisher: { "@id": `${siteUrl}/#business` }
-    }
-  ]
+      publisher: { "@id": businessId },
+    },
+  ],
 };
