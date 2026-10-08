@@ -29,7 +29,7 @@ export default async function CollectionPage({ params }: Props) {
     url: `${siteUrl}/collections/${slug}`, provider: { "@id": businessId },
     areaServed: serviceArea,
   };
-  const schema = pageGraph(`/collections/${slug}`, item.title, item.description, "WebPage", service);
+  const schema = pageGraph(`/collections/${slug}`, item.title, item.description, "WebPage", service, item.shortTitle);
   return <main id="main">
     <section className={`page-hero collection-hero visual-${item.visual}`}><div className="container"><Breadcrumbs items={[{ label: item.shortTitle }]} /><div className="page-hero-grid"><div><span className="eyebrow eyebrow-light">{item.eyebrow} · الرياض</span><h1>{item.title}</h1><p>{item.intro}</p><a className="button button-glow" href={site.telephoneUrl}><Phone size={19} /> استفسر عن الخدمة <ArrowLeft size={18} /></a></div><div className="detail-art" aria-hidden="true"><span className="detail-beam" /><span className="detail-ring ring-one" /><span className="detail-ring ring-two" /><span className="detail-glyph">{item.visual === "electric" ? "⚡" : "✦"}</span></div></div></div></section>
     <section className="section detail-section"><div className="container"><div className="section-header"><div><span className="eyebrow">قبل الاختيار</span><h2>ابدأ من <span>التفاصيل المهمة.</span></h2></div><p>هذه نقاط عملية لترتيب استفسارك. توافر الأصناف والمواصفات يؤكدها النشاط مباشرة.</p></div><div className="detail-grid">{item.points.map((point, i) => <article key={point.title}><span className="detail-number">0{i + 1}</span><Check size={22} /><h3>{point.title}</h3><p>{point.body}</p></article>)}</div></div></section>
@@ -39,3 +39,4 @@ export default async function CollectionPage({ params }: Props) {
     <StructuredData data={schema} />
   </main>;
 }
+
