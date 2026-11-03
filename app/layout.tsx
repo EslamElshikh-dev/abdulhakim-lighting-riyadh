@@ -10,6 +10,7 @@ import "./globals.css";
 const arabicFont = localFont({ src: "../node_modules/@fontsource-variable/noto-sans-arabic/files/noto-sans-arabic-arabic-wght-normal.woff2", display: "swap", variable: "--font-arabic", weight: "100 900" });
 
 export const metadata: Metadata = {
+  creator: "المهندس إسلام الشيخ",
   metadataBase: new URL(siteUrl),
   title: { default: "عبدالحكيم للكهرباء والإنارة الحديثة | كهربائي في الرياض", template: "%s | عبدالحكيم للكهرباء والإنارة" },
   description: site.description,
